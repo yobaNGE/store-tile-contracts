@@ -5,10 +5,8 @@ import org.chiches.storecherepitsacontracs.dto.auth.LoginForm;
 import org.chiches.storecherepitsacontracs.dto.user.UserForm;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RequestMapping("auth")
 public interface AuthController {
@@ -26,12 +24,19 @@ public interface AuthController {
             BindingResult bindingResult,
             Model model
     );
+
     @PostMapping("register")
     String registerUser(
             @Valid @ModelAttribute("form") UserForm form,
             BindingResult bindingResult,
             Model model
     );
+
     @GetMapping("logout")
     String logoutConfirmation(Model model);
+
+    @PostMapping("login-error")
+    String onFailedLogin(
+            @RequestParam(name = "username", required = false) String username,
+            RedirectAttributes redirectAttributes);
 }

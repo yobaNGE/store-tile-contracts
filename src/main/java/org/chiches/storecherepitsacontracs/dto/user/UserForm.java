@@ -19,15 +19,4 @@ public record UserForm(
 
         @NotBlank(message = "Surname cannot be blank")
         String surname
-) {
-        @Override
-        public String toString() {
-                return "UserForm{" +
-                        "username='" + username + '\'' +
-                        ", password='" + password + '\'' +
-                        ", email='" + email + '\'' +
-                        ", name='" + name + '\'' +
-                        ", surname='" + surname + '\'' +
-                        '}';
-        }
-}
+) { }

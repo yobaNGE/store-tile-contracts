@@ -1,23 +1,24 @@
 package org.chiches.storecherepitsacontracs.dto.tile;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 public class UpdateTileForm {
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Name cannot be blank")
     private String name;
 
-    @NotNull
+    @NotNull(message = "Price cannot be blank")
+    @Positive(message = "Price must be positive")
     private Double price;
 
-    @NotBlank
+    @NotBlank(message = "Material cannot be blank")
     private String material;
 
-    @NotNull
+    @NotNull(message = "Category cannot be blank")
     private Long categoryId;
-
+    @Size(min = 10, max = 255, message = "Description must be between 10 and 255 characters")
+    @NotBlank(message = "Description cannot be blank")
     private String description;
 
     public UpdateTileForm(Long id, String name, Double price, String material, Long categoryId, String description) {
